@@ -4,37 +4,30 @@ class Solution {
         for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
-        // b -> a
+        int[] indegree = new int[numCourses];
         for (int[] edge : prerequisites) {
             adj.get(edge[1]).add(edge[0]);
+            indegree[edge[0]]++;
         }
-
-        int[] vis = new int[numCourses];
-
+        Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
-            if (vis[i] == 0) {
-                if (dfs(i, adj, vis)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int[] vis) {
-        vis[node] = 1;
-        for (int neigh : adj.get(node)) {
-            if (vis[neigh] == 0) {
-                if (dfs(neigh, adj, vis)) {
-                    return true;
-                }
-            }
-            else if (vis[neigh] == 1) {
-                return true;
+            if (indegree[i] == 0) {
+                q.offer(i);
             }
         }
 
-        vis[node] = 2;
-        return false;
+        int count = 0;
+        while (!q.isEmpty()) {
+            int node = q.poll();
+            count++;
+            for (int neigh : adj.get(node)) {
+                indegree[neigh]--;
+                if (indegree[neigh] == 0) {
+                    q.offer(neigh);
+                }
+            }
+        }
+
+        return count == numCourses;
     }
 }
