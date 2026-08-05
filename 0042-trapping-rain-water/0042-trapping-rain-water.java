@@ -9,9 +9,9 @@ class Solution{
             if (height[left] >= maxLeft)
                 maxLeft = height[left];
             else
-                water += maxLeft - height[left];
+                water += maxLeft - height[left];// jaise hi maxleft bada hua turant mera water deposit hoga
             left++;
-        } else {
+        } else {// when height[left] becomes greater than right
             if (height[right] >= maxRight)
                 maxRight = height[right];
             else
