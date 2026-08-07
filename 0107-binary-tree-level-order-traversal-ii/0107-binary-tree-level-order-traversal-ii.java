@@ -17,20 +17,21 @@ class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
-        if(root == null) return result;
+        if (root == null)
+            return result;
         queue.offer(root);
 
-        while(!queue.isEmpty()){
-            int levelSize = queue.size();
-            List<Integer> level = new ArrayList<>();
-            for(int i = 0; i < levelSize; i++){
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size(); // maintain a size of queue depicting a specific level size
+            List<Integer> level = new ArrayList<>(); 
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
                 level.add(node.val);
 
-                if(node.left != null){
+                if (node.left != null) {
                     queue.offer(node.left);
                 }
-                if(node.right != null){
+                if (node.right != null) {
                     queue.offer(node.right);
                 }
 
