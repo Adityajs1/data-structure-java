@@ -1,11 +1,11 @@
 class Solution {
-    public int countDaysTogether(String aA, String lA, String aB, String lB) {
+    public int countDaysTogether(String arriveAlice, String leaveAlice, String arriveBob, String leaveBob) {
         int[] m = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         
-        int startA = getDay(aA, m);
-        int endA = getDay(lA, m);
-        int startB = getDay(aB, m);
-        int endB = getDay(lB, m);
+        int startA = getDay(arriveAlice, m);
+        int endA = getDay(leaveAlice, m);
+        int startB = getDay(arriveBob, m);
+        int endB = getDay(leaveBob, m);
         
         int start = Math.max(startA, startB);
         int end = Math.min(endA, endB);
